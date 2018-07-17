@@ -2,6 +2,8 @@
 
 A project written by [Kenny Katzgrau](http://twitter.com/katzgrau) and [Dan Horrigan](http://twitter.com/dhrrgn).
 
+Improved by Flavien Berwick for valid JSON handling.
+
 ## About
 
 KLogger is an easy-to-use [PSR-3](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-3-logger-interface.md)
@@ -18,17 +20,7 @@ If you need a logger that supports PHP < 5.3, see [past releases](https://github
 From the Command Line:
 
 ```
-composer require katzgrau/klogger:dev-master
-```
-
-In your `composer.json`:
-
-``` json
-{
-    "require": {
-        "katzgrau/klogger": "dev-master"
-    }
-}
+composer require flavienbwk/klogger
 ```
 
 ## Basic Usage
@@ -167,14 +159,19 @@ Inject custom content into log messages:
 
 #### JSON
 
-To output pure JSON, set `appendContext` to `false` and provide something like the below as the value of the `logFormat` option:
+To output pure JSON, set `appendContext` to `false` and provide something like the below as the value of the `logFormat` option. You can use this :
 
 ```
-$logFormat = json_encode([
-    'datetime' => '{date}',
-    'logLevel' => '{level}',
-    'message'  => '{message}',
-    'context'  => '{context}',
+$Logger = new flavienbwk\KLogger\Logger(__DIR__ . '/logs', Psr\Log\LogLevel::INFO, [
+    "dateFormat" => "G:i:s.u d/m/Y",
+    "extension" => "json",
+    "logFormat" => json_encode([
+        'datetime' => '{date}',
+        'logLevel' => '{level}',
+        'message' => '{message}',
+        'context' => '{context}',
+    ]),
+    "appendContext" => false
 ]);
 ```
 
@@ -218,27 +215,3 @@ Special thanks to all contributors:
 * [Tim Kinnane](http://twitter.com/etherealtim)
 * [Onno Vos](https://github.com/onno-vos-dev)
 * [Cameron Will](https://github.com/cwill747)
-
-## License
-
-The MIT License
-
-Copyright (c) 2008-2015 Kenny Katzgrau <katzgrau@gmail.com>
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
