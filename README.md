@@ -177,7 +177,7 @@ $Logger = new flavienbwk\KLogger\Logger(__DIR__ . '/logs', Psr\Log\LogLevel::INF
 
 The output will look like:
 
-    {"datetime":"2015-04-16 10:28:41.186728","logLevel":"INFO","message":"Message content","context":"{"1":"foo","2":"bar"}"}
+    {"datetime":"2015-04-16 10:28:41.186728","logLevel":"INFO","message":"Message content","context":"{\"1\":\"foo\",\"2\":\"bar\"}"}
     
 #### Pretty Formatting with Level Padding
 
