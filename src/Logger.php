@@ -1,6 +1,6 @@
 <?php
 
-namespace flavienbwk\klogger;
+namespace flavienbwk\KLogger;
 
 use DateTime;
 use RuntimeException;
