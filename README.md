@@ -20,7 +20,7 @@ If you need a logger that supports PHP < 5.3, see [past releases](https://github
 From the Command Line:
 
 ```
-composer require flavienbwk/klogger
+composer require flavienbwk/klogger:dev-master
 ```
 
 ## Basic Usage
